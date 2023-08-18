@@ -1,16 +1,21 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthbarView : MonoBehaviour
 {
-    [SerializeField] private Canvas _canvas;
     [SerializeField] private Scrollbar _scrollbar;
 
-    private int _healthValue;
-    
-    public void Render(int healthValue)
+    private float normalizedValue;
+
+    public void Render(Healthbar healthbar)
     {
-        _healthValue = healthValue;
-        Debug.Log(_healthValue);
+        normalizedValue = (float)healthbar.HealthValue / (float)healthbar.MaxHealthValue;
+    }
+
+    private void Update()
+    {
+        if (_scrollbar.value != normalizedValue)
+            _scrollbar.value = Mathf.MoveTowards(_scrollbar.value, normalizedValue, Time.deltaTime);
     }
 }

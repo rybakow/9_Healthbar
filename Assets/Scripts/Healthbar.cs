@@ -1,18 +1,17 @@
 using System;
-using UnityEngine;
-using UnityEngine.UI;
 
 [Serializable]
 public class Healthbar
 {
-    private Canvas _canvas;
-    private Scrollbar _scrollbar;
+    private int _healthValue;
+    private int _maxHealthValue;
 
-    public Healthbar(Canvas canvas, Scrollbar scrollbar)
+    public Healthbar(int maxHealthValue, int healthValue)
     {
-        _canvas = canvas;
-        _scrollbar = scrollbar;
+        _maxHealthValue = maxHealthValue;
+        _healthValue = healthValue;
     }
     
-    public Scrollbar Scrollbar => _scrollbar;
+    public int MaxHealthValue => _maxHealthValue;
+    public int HealthValue => _healthValue;
 }

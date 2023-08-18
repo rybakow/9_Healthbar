@@ -616,6 +616,7 @@ GameObject:
   - component: {fileID: 1748071042}
   - component: {fileID: 1748071041}
   - component: {fileID: 1748071040}
+  - component: {fileID: 1748071043}
   m_Layer: 5
   m_Name: HealButton
   m_TagString: Untagged
@@ -686,7 +687,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1748071041}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1748071043}
+        m_TargetAssemblyTypeName: HealButton, Assembly-CSharp
+        m_MethodName: OnPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1748071041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,6 +738,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1748071038}
   m_CullTransparentMesh: 1
+--- !u!114 &1748071043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748071038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a34965927b05784479fe2d19e53137f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _person: {fileID: 1964573929}
+  _healPoints: 10
 --- !u!1 &1893412966
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,6 +984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ac8c7a8d78de44d97ff036479299fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthbarSetter: {fileID: 1964573933}
   _maxHealth: 50
   _minHealth: 0
 --- !u!114 &1964573933
@@ -971,9 +999,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42e33643799193479bc979760b45b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthbar: {fileID: 8835996462759532295, guid: dfbcada664227a04a959e8d40b437c7e, type: 3}
+  _healthbarPrefab: {fileID: 8835996462759532295, guid: dfbcada664227a04a959e8d40b437c7e, type: 3}
   _container: {fileID: 1964573931}
-  _person: {fileID: 0}
+  _person: {fileID: 1964573929}
+  _healthChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1964573933}
+        m_TargetAssemblyTypeName: HealthbarSetter, Assembly-CSharp
+        m_MethodName: Render
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1995101809
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,6 +1029,7 @@ GameObject:
   - component: {fileID: 1995101813}
   - component: {fileID: 1995101812}
   - component: {fileID: 1995101811}
+  - component: {fileID: 1995101814}
   m_Layer: 5
   m_Name: DamageButton
   m_TagString: Untagged
@@ -1056,7 +1100,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1995101812}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1995101814}
+        m_TargetAssemblyTypeName: DamageButton, Assembly-CSharp
+        m_MethodName: OnPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1995101812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,6 +1151,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1995101809}
   m_CullTransparentMesh: 1
+--- !u!114 &1995101814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995101809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9f66307f8130a4b983733ebdf53901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _person: {fileID: 1964573929}
+  _damagePoints: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
