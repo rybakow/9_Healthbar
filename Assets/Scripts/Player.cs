@@ -3,6 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private int _maxHealth;
+    [SerializeField] private int _pointsPerAction;
     
     private Healthbar _healthbar;
 
@@ -13,13 +14,13 @@ public class Player : MonoBehaviour
 
     public Healthbar Healthbar => _healthbar;
 
-    public void Heal(int healPoints)
+    public void Heal()
     {
-        _healthbar.IncreaseHealth(healPoints);
+        _healthbar.IncreaseHealth(_pointsPerAction);
     }
     
-    public void Damage(int damagePoints)
+    public void Damage()
     {
-        _healthbar.DecreaseHealth(damagePoints);
+        _healthbar.DecreaseHealth(_pointsPerAction);
     }
 }

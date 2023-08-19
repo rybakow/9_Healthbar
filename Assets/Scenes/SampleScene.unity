@@ -616,7 +616,6 @@ GameObject:
   - component: {fileID: 1748071042}
   - component: {fileID: 1748071041}
   - component: {fileID: 1748071040}
-  - component: {fileID: 1748071043}
   m_Layer: 5
   m_Name: HealButton
   m_TagString: Untagged
@@ -688,9 +687,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748071043}
-        m_TargetAssemblyTypeName: HealButton, Assembly-CSharp
-        m_MethodName: OnPressed
+      - m_Target: {fileID: 1964573932}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Heal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -738,20 +737,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1748071038}
   m_CullTransparentMesh: 1
---- !u!114 &1748071043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748071038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a34965927b05784479fe2d19e53137f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 1964573932}
-  _healPoints: 10
 --- !u!1 &1893412966
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,6 +970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 50
+  _pointsPerAction: 10
 --- !u!114 &1964573933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1084,9 +1070,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1995101814}
-        m_TargetAssemblyTypeName: DamageButton, Assembly-CSharp
-        m_MethodName: OnPressed
+      - m_Target: {fileID: 1964573932}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Damage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

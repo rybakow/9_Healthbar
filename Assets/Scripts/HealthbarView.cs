@@ -23,6 +23,12 @@ public class HealthbarView : MonoBehaviour
         
         Render();
     }
+    
+    private void Update()
+    {
+        if (_scrollbar.value != normalizedValue)
+            _scrollbar.value = Mathf.MoveTowards(_scrollbar.value, normalizedValue, Time.deltaTime);
+    }
 
     private void OnDisable()
     {
@@ -32,11 +38,5 @@ public class HealthbarView : MonoBehaviour
     public void Render()
     {
         normalizedValue = (float)_healthbar.HealthValue / (float)_healthbar.MaxHealthValue;
-    }
-
-    private void Update()
-    {
-        if (_scrollbar.value != normalizedValue)
-            _scrollbar.value = Mathf.MoveTowards(_scrollbar.value, normalizedValue, Time.deltaTime);
     }
 }
