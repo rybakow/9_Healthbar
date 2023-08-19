@@ -1,17 +1,36 @@
-using System;
+using UnityEngine;
+using UnityEngine.Events;
 
-[Serializable]
 public class Healthbar
 {
-    private int _healthValue;
     private int _maxHealthValue;
+    private int _minHealthValue;
 
-    public Healthbar(int maxHealthValue, int healthValue)
+    public Healthbar(int maxHealthValue)
     {
+        HealthValue = maxHealthValue;
         _maxHealthValue = maxHealthValue;
-        _healthValue = healthValue;
+        _minHealthValue = 0;
     }
     
+    public UnityAction _healthChanged;
+
+    public int HealthValue { get; private set; }
     public int MaxHealthValue => _maxHealthValue;
-    public int HealthValue => _healthValue;
+
+    public void IncreaseHealth(int value)
+    {
+        HealthValue += value;
+        HealthValue = Mathf.Clamp(HealthValue, _minHealthValue, _maxHealthValue);
+        
+        _healthChanged.Invoke();
+    }
+
+    public void DecreaseHealth(int value)
+    {
+        HealthValue -= value;
+        HealthValue = Mathf.Clamp(HealthValue, _minHealthValue, _maxHealthValue);
+
+        _healthChanged.Invoke();
+    }
 }
