@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,35 +9,51 @@ public class HealthbarView : MonoBehaviour
     [SerializeField] private Transform _container;
     
     private Scrollbar _scrollbar;
-    private Healthbar _healthbar;
+    private Health _health;
 
     private float normalizedValue;
+
+    private Coroutine _movingScrollbar;
+
+    private void OnDisable()
+    {
+        _health.HealthChanged -= Render;
+    }
 
     private void Start()
     {
         GameObject healthbarObject = Instantiate(_healthbarPrefab, _container.transform);
-       
-        _healthbar = _player.Healthbar;
-        _healthbar._healthChanged += Render;
+
+        _health = _player.Health;
+        _health.HealthChanged += Render;
 
         _scrollbar = healthbarObject.GetComponentInChildren<Scrollbar>();
-        
-        Render();
-    }
-    
-    private void Update()
+
+        Render(_health.MaxValue);
+    }    
+
+    public void Render(int actualValue)
     {
-        if (_scrollbar.value != normalizedValue)
+        normalizedValue = (float)actualValue / (float)_health.MaxValue;
+
+        if (_movingScrollbar == null)
+        {
+            _movingScrollbar = StartCoroutine(MovingScrollbar(normalizedValue));
+        } 
+        else
+        {
+            StopCoroutine(_movingScrollbar);
+            _movingScrollbar = StartCoroutine(MovingScrollbar(normalizedValue));
+        }
+    }
+
+    private IEnumerator MovingScrollbar (float normalizedValue)
+    {
+        while(_scrollbar.value != normalizedValue)
+        {
             _scrollbar.value = Mathf.MoveTowards(_scrollbar.value, normalizedValue, Time.deltaTime);
-    }
 
-    private void OnDisable()
-    {
-        _healthbar._healthChanged -= Render;
-    }
-
-    public void Render()
-    {
-        normalizedValue = (float)_healthbar.HealthValue / (float)_healthbar.MaxHealthValue;
+            yield return null;
+        }
     }
 }
